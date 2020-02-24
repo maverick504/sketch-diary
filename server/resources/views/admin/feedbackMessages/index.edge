@@ -1,0 +1,40 @@
+@layout('layouts.admin')
+
+@section('content')
+  <h1 class="h2 mb-3">Feedback messages</h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col" style="width: 80px;">#</th>
+        <th scope="col">User</th>
+        <th scope="col">Type</th>
+        <th scope="col">Details</th>
+        <th scope="col">Created at</th>
+      </tr>
+    </thead>
+    <tbody>
+      @each(message in feedbackMessages.data)
+        <tr>
+          <th scope="row">{{ message.id }}</th>
+          <th>{{ message.user.username }}</th>
+          <td>{{ message.type }}</td>
+          <td>{{ message.details }}</td>
+          <td>{{ message.created_at }}</td>
+        </tr>
+      @endeach
+    </tbody>
+  </table>
+  <nav>
+    <ul class="pagination">
+      <li class="page-item {{ feedbackMessages.page <= 1 ? 'disabled' : '' }}">
+        <a class="page-link" href="{{ '/admin/feedback?page=' + (feedbackMessages.page - 1) }}">Previous</a>
+      </li>
+      <li class="page-item active">
+        <a class="page-link" href="{{ '/admin/feedback?page=' + feedbackMessages.page }}">{{ feedbackMessages.page }}</a>
+      </li>
+      <li class="page-item {{ feedbackMessages.page >= feedbackMessages.lastPage ? 'disabled' : '' }}">
+        <a class="page-link" href="{{ '/admin/feedback?page=' + (feedbackMessages.page + 1) }}">Next</a>
+      </li>
+    </ul>
+  </nav>
+@endsection

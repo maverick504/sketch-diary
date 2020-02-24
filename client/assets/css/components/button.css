@@ -1,0 +1,93 @@
+.button {
+  @apply inline-block inline-flex justify-center items-center border;
+}
+.button:focus {
+  @apply outline-none;
+}
+
+.button-default-variant {
+  @apply bg-white text-gray-900 border-gray-400;
+}
+.button-default-variant:hover {
+  @apply bg-gray-100 text-gray-900 border-gray-500
+}
+
+.button-primary {
+  @apply bg-primary text-white border-primary;
+}
+.button-primary:hover {
+  @apply bg-primary-darker text-white border-primary-darker;
+}
+
+.button-secondary {
+  @apply bg-white text-primary border-primary;
+}
+.button-secondary:hover {
+  @apply bg-white text-primary-darker border-primary-darker;
+}
+
+.button-tertiary {
+  @apply bg-transparent text-primary underline border-transparent;
+}
+.button-tertiary:hover {
+  @apply bg-transparent text-primary-darker border-transparent;
+}
+
+.button-success {
+  @apply bg-green text-white border-green;
+}
+.button-success:hover {
+  @apply bg-green-darker text-white border-green-darker;
+}
+
+.button-danger {
+  @apply bg-red text-white border-red;
+}
+.button-danger:hover {
+  @apply bg-red-darker text-white border-red-darker;
+}
+
+.button-warning {
+  @apply bg-yellow text-white border-yellow;
+}
+.button-warning:hover {
+  @apply bg-yellow-darker text-white border-yellow-darker;
+}
+
+.button-disabled {
+  @apply cursor-not-allowed opacity-50;
+}
+
+.button-default-size {
+  @apply px-6 py-3;
+}
+
+.button-large {
+  @apply px-8 py-4 text-lg;
+}
+
+.button-small {
+  @apply px-4 py-2 text-sm;
+}
+
+.button-loading {
+  position: relative;
+  pointer-events: none;
+  color: transparent !important;
+}
+
+.button-loading:after {
+  animation: spinAround 500ms infinite linear;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 50%;
+  border-right-color: transparent;
+  border-top-color: transparent;
+  content: "";
+  display: block;
+  height: 1em;
+  width: 1em;
+  position: absolute;
+  left: calc(50% - (1em / 2));
+  top: calc(50% - (1em / 2));
+}

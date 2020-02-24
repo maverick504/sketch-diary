@@ -1,0 +1,87 @@
+@layout('layouts.admin')
+
+@section('content')
+
+  @if(hasErrors())
+    <div class="alert alert-danger" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      {{ elIf('<div>$self</div>', getErrorFor('skill_id'), hasErrorFor('skill_id')) }}
+      {{ elIf('<div>$self</div>', getErrorFor('points'), hasErrorFor('points')) }}
+    </div>
+  @endif
+
+  <h1 class="h2 mb-3">{{ challenge.title }}</h1>
+
+  @include('admin.challenges.edit.tabs')
+
+  <div class="mb-3">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Skill</th>
+          <th scope="col">Points</th>
+          <th scope="col" style="width: 60px;"></th>
+        </tr>
+      </thead>
+      <tbody>
+        @each(skillPoints in challengeSkillPoints)
+          <tr>
+            <th scope="row">{{ skillPoints.skill.name }}</th>
+            <th scope="row">{{ '+' + skillPoints.points + ' SP' }}</th>
+            <td>
+              <form action="{{ '/admin/challenge-skill-points/' + skillPoints.id + '?_method=DELETE' }}" method="POST">
+                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+              </form>
+            </td>
+          </tr>
+        @else
+          <tr>
+            <th scope="row" colspan="3" class="bg-light py-4 text-center">
+              Empty...
+            </th>
+          </tr>
+        @endeach
+      </tbody>
+    </table>
+    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addSkillPointsModal">
+      Add skill points
+    </button>
+  </div>
+
+  <div class="modal fade" id="addSkillPointsModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add skill points</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="{{ '/admin/challenges/' + challenge.id + '/add-skill-points' }}" method="POST" id="addSkillPointsForm">
+            <div class="form-group">
+              <label for="add-skill-points-modal--skill-id">Skill</label>
+              <select class="form-control" name="skill_id" id="add-skill-points-modal--skill-id">
+                <option value="">Skill</option>
+                @each(skill in skills.rows)
+                  <option value="{{ skill.id }}">{{ skill.name }}</option>
+                @endeach
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="add-skill-points-modal--points">Points</label>
+              <input type="number" class="form-control" name="points" id="add-skill-points-modal--points" placeholder="Points">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" onclick="$('#addSkillPointsForm').submit()">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+@endsection

@@ -1,0 +1,77 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* purgecss start ignore */
+
+@import 'croppie/croppie.css';
+
+@import './components/bottom-nav.css';
+@import './components/button.css';
+@import './components/footer.css';
+@import './components/heart-rating.css';
+@import './components/navbar.css';
+@import './components/placeholder.css';
+@import './components/spinner.css';
+
+@import './overrides/croppie-override.css';
+@import './overrides/feather-icons-override.css';
+@import './overrides/medium-zoom-override.css';
+@import './overrides/swal2-override.css';
+
+/* DARK STYLE SCROLLBAR */
+
+.dark-scrollbar::-webkit-scrollbar {
+  @apply w-2 bg-gray-700;
+}
+
+.dark-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-gray-600;
+}
+
+/* SNAPS.SHOW PAGE BACKGROUND */
+
+.snap-bg {
+  position: relative;
+  height: 100vh;
+}
+
+@media (min-width: 768px) {
+  .snap-bg {
+    height: calc(100vh - 56px);
+  }
+}
+
+.snap-bg::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+
+  display: block;
+  background-image: inherit;
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+}
+
+/* SNAPS.SHOW, SNAP HEADER */
+
+.snap-header {
+  @apply bg-gray-900;
+}
+
+@media (min-width: 640px) {
+  .snap-header {
+    background: linear-gradient(#0009, #0000) !important;
+  }
+}
+
+/* purgecss end ignore */

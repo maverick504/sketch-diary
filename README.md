@@ -1,2 +1,6 @@
-# sketch-diary
-Drawing challenges and analytics for people learning to draw.
+# Sketch Diary
+
+- Install server
+- Set timezone as UTC on database
+
+adonis run:scheduler

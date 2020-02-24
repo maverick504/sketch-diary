@@ -1,0 +1,11 @@
+<ul class="nav nav-tabs mb-3">
+  <li class="nav-item">
+    <a class="nav-link {{ request.url() == '/admin/challenges/' + challenge.id + '/edit' ? 'active' : '' }}" href="{{ '/admin/challenges/' + challenge.id + '/edit' }}">Details</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link {{ request.url() == '/admin/challenges/' + challenge.id + '/edit/skill-points' ? 'active' : '' }}" href="{{ '/admin/challenges/' + challenge.id + '/edit/skill-points' }}">Skill points</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link {{ request.url() == '/admin/challenges/' + challenge.id + '/edit/references' ? 'active' : '' }}" href="{{ '/admin/challenges/' + challenge.id + '/edit/references' }}">References</a>
+  </li>
+</ul>

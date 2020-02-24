@@ -1,0 +1,51 @@
+.swal2-modal {
+  @apply p-6 rounded-none shadow-lg !important;
+}
+
+.swal2-icon {
+  @apply mt-0 mb-6 !important;
+}
+
+.swal2-icon.swal2-info {
+  @apply text-primary border-primary !important;
+}
+
+.swal2-icon.swal2-success {
+  @apply text-green border-green !important;
+}
+
+.swal2-icon.swal2-warning {
+  @apply text-red border-red !important;
+}
+
+.swal2-title {
+  @apply text-xl text-gray-900 !important;
+}
+
+.swal2-html-container {
+  @apply text-base text-gray-900 !important;
+}
+
+.swal2-actions {
+  @apply mt-6 !important;
+}
+
+.swal2-confirm {
+  @apply bg-primary px-4 py-2 text-base text-white border-2 border-primary rounded-none shadow-none mx-1 my-0 !important;
+}
+
+.swal2-confirm:hover {
+  @apply bg-primary-darker text-white border-primary-darker !important;
+}
+
+.swal2-cancel {
+  @apply bg-white px-4 py-2 text-base text-primary border-2 border-primary rounded-none shadow-none mx-1 my-0 !important;
+}
+
+.swal2-cancel:hover {
+  @apply bg-white text-primary-darker border-primary-darker !important;
+}
+
+.swal2-cancel:hover, .swal2-cancel:focus {
+  background: #ffffff !important;
+}

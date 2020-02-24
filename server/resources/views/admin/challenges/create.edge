@@ -1,0 +1,63 @@
+@layout('layouts.admin')
+
+@section('content')
+
+  <h1 class="h2 mb-3">Create challenge</h1>
+
+  <form action="/admin/challenges" method="POST">
+
+    <div class="form-group">
+      <label for="create-challenge-form--title">Challenge title</label>
+      <input type="text" class="form-control" name="title" id="create-challenge-form--title" placeholder="Challenge title" value="{{ old('title') }}">
+      {{ elIf('<div class="form-text text-danger">$self</div>', getErrorFor('title'), hasErrorFor('title')) }}
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+
+        <div class="form-group">
+          <label for="create-challenge-form--difficulty-level">Difficulty level</label>
+          <select class="form-control" name="difficulty_level" id="create-challenge-form--difficulty-level">
+            <option value="">Difficulty level</option>
+            <option value="beginner" {{ old('difficulty_level')==='beginner' ? 'selected' : '' }}>Beginner</option>
+            <option value="medium" {{ old('difficulty_level')==='medium' ? 'selected' : '' }}>Medium</option>
+            <option value="advanced" {{ old('difficulty_level')==='advanced' ? 'selected' : '' }}>Advanced</option>
+          </select>
+          {{ elIf('<div class="form-text text-danger">$self</div>', getErrorFor('difficulty_level'), hasErrorFor('difficulty_level')) }}
+        </div>
+
+      </div>
+      <div class="col">
+
+        <div class="form-group">
+          <label for="create-challenge-form--estimated-time">Estimated time</label>
+          <select class="form-control" name="estimated_time" id="create-challenge-form--estimated-time">
+            <option value="">Estimated time</option>
+            <option value="5" {{ old('estimated_time')==='5' ? 'selected' : '' }}>5 min.</option>
+            <option value="10" {{ old('estimated_time')==='10' ? 'selected' : '' }}>10 min.</option>
+            <option value="15" {{ old('estimated_time')==='15' ? 'selected' : '' }}>15 min.</option>
+            <option value="20" {{ old('estimated_time')==='20' ? 'selected' : '' }}>20 min.</option>
+            <option value="25" {{ old('estimated_time')==='25' ? 'selected' : '' }}>25 min.</option>
+            <option value="30" {{ old('estimated_time')==='30' ? 'selected' : '' }}>30 min.</option>
+            <option value="45" {{ old('estimated_time')==='45' ? 'selected' : '' }}>45 min.</option>
+            <option value="60" {{ old('estimated_time')==='60' ? 'selected' : '' }}>60 min.</option>
+          </select>
+          {{ elIf('<div class="form-text text-danger">$self</div>', getErrorFor('estimated_time'), hasErrorFor('estimated_time')) }}
+        </div>
+
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="create-challenge-form--body">Challenge body</label>
+      <textarea class="form-control" name="body" id="create-challenge-form--body" placeholder="Challenge body">{{ old('challenge_body') }}</textarea>
+      {{ elIf('<div class="form-text text-danger">$self</div>', getErrorFor('body'), hasErrorFor('body')) }}
+    </div>
+
+    <div class="mb-3">
+      <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+
+  </form>
+
+@endsection

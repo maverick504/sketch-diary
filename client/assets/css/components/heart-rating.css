@@ -1,0 +1,30 @@
+
+.heart-rating.heart-rating-1 .heart-rating-item:nth-child(1) {
+  @apply text-red;
+}
+
+.heart-rating.heart-rating-2 .heart-rating-item:nth-child(1),
+.heart-rating.heart-rating-2 .heart-rating-item:nth-child(2) {
+  @apply text-red;
+}
+
+.heart-rating.heart-rating-3 .heart-rating-item:nth-child(1),
+.heart-rating.heart-rating-3 .heart-rating-item:nth-child(2),
+.heart-rating.heart-rating-3 .heart-rating-item:nth-child(3) {
+  @apply text-red;
+}
+
+.heart-rating.heart-rating-4 .heart-rating-item:nth-child(1),
+.heart-rating.heart-rating-4 .heart-rating-item:nth-child(2),
+.heart-rating.heart-rating-4 .heart-rating-item:nth-child(3),
+.heart-rating.heart-rating-4 .heart-rating-item:nth-child(4) {
+  @apply text-red;
+}
+
+.heart-rating.heart-rating-5 .heart-rating-item:nth-child(1),
+.heart-rating.heart-rating-5 .heart-rating-item:nth-child(2),
+.heart-rating.heart-rating-5 .heart-rating-item:nth-child(3),
+.heart-rating.heart-rating-5 .heart-rating-item:nth-child(4),
+.heart-rating.heart-rating-5 .heart-rating-item:nth-child(5) {
+  @apply text-red;
+}

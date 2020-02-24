@@ -1,0 +1,13 @@
+body.medium-zoom--opened {
+  @apply overflow-hidden;
+}
+
+.medium-zoom-overlay,
+.medium-zoom-image.medium-zoom-image--opened {
+  z-index: 100 !important;
+}
+
+.zoomable-reference-image img:not(.medium-zoom-image--opened) {
+  width: auto !important;
+  height: 100% !important;
+}

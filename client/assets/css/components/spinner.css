@@ -1,0 +1,29 @@
+.spinner {
+  animation: spinAround 500ms infinite linear;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 50%;
+  border-right-color: transparent;
+  border-top-color: transparent;
+  content: "";
+  display: block;
+  margin: 0 auto;
+  height: 2em;
+  width: 2em;
+  left: calc(50% - (2em / 2));
+  top: calc(50% - (2em / 4));
+}
+
+.spinner.spinner-lg {
+  border-width: 4px;
+  border-style: solid;
+  height: 4em;
+  width: 4em;
+  left: calc(50% - (4em / 2));
+  top: calc(50% - (4em / 4));
+}
+
+@keyframes spinAround {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(359deg); }
+}

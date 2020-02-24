@@ -1,0 +1,79 @@
+@layout('layouts.admin')
+
+@section('content')
+
+  <h1 class="h2 mb-3">{{ challenge.title }}</h1>
+
+  @include('admin.challenges.edit.tabs')
+
+  <form action="{{ '/admin/challenges/' + challenge.id + '?_method=PATCH' }}" method="POST">
+
+    <div class="form-group">
+      <label for="create-challenge-form--title">Challenge title</label>
+      <input type="text" class="form-control" name="title" id="create-challenge-form--title" placeholder="Challenge title" value="{{ challenge.title }}">
+      {{ elIf('<div class="form-text text-danger">$self</div>', getErrorFor('title'), hasErrorFor('title')) }}
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+
+        <div class="form-group">
+          <label for="create-challenge-form--status">Status</label>
+          <select class="form-control" name="status" id="create-challenge-form--status">
+            <option value="">Status</option>
+            <option value="draft" {{ challenge.status === 'draft' ? 'selected' : '' }}>Draft</option>
+            <option value="pending" {{ challenge.status === 'pending' ? 'selected' : '' }}>Pending</option>
+            <option value="published" {{ challenge.status === 'published' ? 'selected' : '' }}>Published</option>
+          </select>
+          {{ elIf('<div class="form-text text-danger">$self</div>', getErrorFor('status'), hasErrorFor('status')) }}
+        </div>
+
+      </div>
+      <div class="col">
+
+        <div class="form-group">
+          <label for="create-challenge-form--difficulty-level">Difficulty level</label>
+          <select class="form-control" name="difficulty_level" id="create-challenge-form--difficulty-level">
+            <option value="">Difficulty level</option>
+            <option value="beginner" {{ challenge.difficulty_level === 'beginner' ? 'selected' : '' }}>Beginner</option>
+            <option value="medium" {{ challenge.difficulty_level === 'medium' ? 'selected' : '' }}>Medium</option>
+            <option value="advanced" {{ challenge.difficulty_level === 'advanced' ? 'selected' : '' }}>Advanced</option>
+          </select>
+          {{ elIf('<div class="form-text text-danger">$self</div>', getErrorFor('difficulty_level'), hasErrorFor('difficulty_level')) }}
+        </div>
+
+      </div>
+      <div class="col">
+
+        <div class="form-group">
+          <label for="create-challenge-form--estimated-time">Estimated time</label>
+          <select class="form-control" name="estimated_time" id="create-challenge-form--estimated-time">
+            <option value="">Estimated time</option>
+            <option value="5" {{ challenge.estimated_time === '5' ? 'selected' : '' }}>5 min.</option>
+            <option value="10" {{ challenge.estimated_time === '10' ? 'selected' : '' }}>10 min.</option>
+            <option value="15" {{ challenge.estimated_time === '15' ? 'selected' : '' }}>15 min.</option>
+            <option value="20" {{ challenge.estimated_time === '20' ? 'selected' : '' }}>20 min.</option>
+            <option value="25" {{ challenge.estimated_time === '25' ? 'selected' : '' }}>25 min.</option>
+            <option value="30" {{ challenge.estimated_time === '30' ? 'selected' : '' }}>30 min.</option>
+            <option value="45" {{ challenge.estimated_time === '45' ? 'selected' : '' }}>45 min.</option>
+            <option value="60" {{ challenge.estimated_time === '60' ? 'selected' : '' }}>60 min.</option>
+          </select>
+          {{ elIf('<div class="form-text text-danger">$self</div>', getErrorFor('estimated_time'), hasErrorFor('estimated_time')) }}
+        </div>
+
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="create-challenge-form--body">Challenge body</label>
+      <textarea class="form-control" name="body" id="create-challenge-form--body" placeholder="Challenge body">{{ challenge.body }}</textarea>
+      {{ elIf('<div class="form-text text-danger">$self</div>', getErrorFor('body'), hasErrorFor('body')) }}
+    </div>
+
+    <div class="mb-3">
+      <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+
+  </form>
+
+@endsection

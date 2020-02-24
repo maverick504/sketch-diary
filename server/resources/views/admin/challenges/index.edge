@@ -1,0 +1,53 @@
+@layout('layouts.admin')
+
+@section('content')
+
+  <h1 class="h2 mb-3">Challenges</h1>
+
+  <a class="btn btn-primary btn-sm mb-3" href="/admin/challenges/create">
+    + New challenge
+  </a>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col" style="width: 80px;">#</th>
+        <th scope="col">Title</th>
+        <th scope="col">Level</th>
+        <th scope="col">Estimated time</th>
+        <th scope="col">Status</th>
+        <th scope="col">Created at</th>
+        <th scope="col" style="width: 60px;"></th>
+      </tr>
+    </thead>
+    <tbody>
+      @each(challenge in challenges.data)
+        <tr>
+          <th scope="row">{{ challenge.id }}</th>
+          <td>{{ challenge.title }}</td>
+          <td>{{ challenge.difficulty_level }}</td>
+          <td>{{ challenge.estimated_time }}</td>
+          <td>{{ challenge.status }}</td>
+          <td>{{ challenge.created_at }}</td>
+          <td>
+            <a href="/admin/challenges/{{ challenge.id }}/edit" class="btn btn-sm btn-primary">view</a>
+          </td>
+        </tr>
+      @endeach
+    </tbody>
+  </table>
+  <nav>
+    <ul class="pagination">
+      <li class="page-item {{ challenges.page <= 1 ? 'disabled' : '' }}">
+        <a class="page-link" href="{{ '/admin/challenges?page=' + (challenges.page - 1) }}">Previous</a>
+      </li>
+      <li class="page-item active">
+        <a class="page-link" href="{{ '/admin/challenges?page=' + challenges.page }}">{{ challenges.page }}</a>
+      </li>
+      <li class="page-item {{ challenges.page >= challenges.lastPage ? 'disabled' : '' }}">
+        <a class="page-link" href="{{ '/admin/challenges?page=' + (challenges.page + 1) }}">Next</a>
+      </li>
+    </ul>
+  </nav>
+
+@endsection

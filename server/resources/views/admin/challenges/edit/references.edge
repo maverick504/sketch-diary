@@ -1,0 +1,91 @@
+@layout('layouts.admin')
+
+@section('content')
+
+  @if(hasErrors())
+    <div class="alert alert-danger" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      {{ elIf('<div>$self</div>', getErrorFor('image_url'), hasErrorFor('image_url')) }}
+      {{ elIf('<div>$self</div>', getErrorFor('site_name'), hasErrorFor('site_name')) }}
+      {{ elIf('<div>$self</div>', getErrorFor('origin_url'), hasErrorFor('origin_url')) }}
+    </div>
+  @endif
+
+  <h1 class="h2 mb-3">{{ challenge.title }}</h1>
+
+  @include('admin.challenges.edit.tabs')
+
+  <div class="mb-3">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col" style="width: 120px;">Image</th>
+          <th scope="col">Site</th>
+          <th scope="col">Site url</th>
+          <th scope="col" style="width: 60px;"></th>
+        </tr>
+      </thead>
+      <tbody>
+        @each(reference in challengeReferences.rows)
+          <tr>
+            <th scope="row">
+              <img src="{{ reference.image_url }}" width="100">
+            </th>
+            <th scope="row">{{ reference.site_name }}</th>
+            <th scope="row">{{ reference.origin_url }}</th>
+            <td>
+              <form action="{{ '/admin/challenge-references/' + reference.id + '?_method=DELETE' }}" method="POST">
+                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+              </form>
+            </td>
+          </tr>
+        @else
+          <tr>
+            <th scope="row" colspan="4" class="bg-light py-4 text-center">
+              Empty...
+            </th>
+          </tr>
+        @endeach
+      </tbody>
+    </table>
+    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addReference">
+      Add reference
+    </button>
+  </div>
+
+  <div class="modal fade" id="addReference" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add reference</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="{{ '/admin/challenges/' + challenge.id + '/add-reference' }}" method="POST" id="addReferenceForm">
+            <div class="form-group">
+              <label for="add-reference-modal--image-url">Image URL</label>
+              <input type="text" class="form-control" name="image_url" id="add-reference-modal--image-url" placeholder="Image URL">
+            </div>
+            <div class="form-group">
+              <label for="add-reference-modal--site-name">Site name</label>
+              <input type="text" class="form-control" name="site_name" id="add-reference-modal--site-name" placeholder="Site name">
+            </div>
+            <div class="form-group">
+              <label for="add-reference-modal--origin-url">Origin URL</label>
+              <input type="text" class="form-control" name="origin_url" id="add-reference-modal--origin-url" placeholder="Origin URL">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" onclick="$('#addReferenceForm').submit()">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+@endsection

@@ -1,0 +1,3 @@
+.placeholder {
+  @apply block p-8 text-center text-gray-600 border-dashed border-2 border-gray-400;
+}

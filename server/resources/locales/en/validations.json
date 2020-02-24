@@ -1,0 +1,42 @@
+{
+
+  "generic.required": "The {field} field is required",
+  "generic.in": "The {field} field is not valid",
+  "generic.maxChar": "The {field} field cannot exceed {max} characters",
+  "generic.minChar": "The {field} field must be at least {min} characters long",
+  "generic.maxVal": "The {field} field cannot be higher than {max}",
+  "generic.minVal": "The {field} field cannot be lower than {min}",
+  "generic.string": "The {field} field must be a string",
+  "generic.integer": "The {field} field must be an integer",
+
+
+  "auth.login.email.required": "Please enter your account's email",
+  "auth.login.password.required": "Please enter your account's password",
+
+
+  "auth.register.username.required": "An username is required for your account",
+  "auth.register.username.username": "Username must have between 1 and 20 characters and shouldn't contain spaces or special characters",
+  "auth.register.username.unique": "There's already an account with this username",
+
+  "auth.register.email.required": "An email address is required for your account",
+  "auth.register.email.email": "This email address is not valid",
+  "auth.register.email.unique": "There's already an account with this email address",
+
+  "auth.register.password.required": "A password is required for your account",
+  "auth.register.password.min": "The password must be at least 8 characters of length",
+
+
+  "settings.profile.username.username": "Username must have between 1 and 20 characters and shouldn't contain spaces or special characters",
+  "settings.profile.username.unique": "There's already an account with this username",
+
+  "settings.profile.gender.in": "Gender must be 'male' or 'female'",
+
+
+  "settings.password.current_password.required": "Please type your current password",
+
+  "settings.password.new_password.required": "Please type the new password you want for you account",
+  "settings.password.new_password.min": "The password must be at least 8 characters of long",
+
+  "settings.password.new_password_confirmation.required": "Please re-type your new password"
+
+}
