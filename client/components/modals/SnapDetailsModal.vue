@@ -53,8 +53,8 @@
               Delete snap
             </t-button>
           </div>
-          <div v-else-if="activeTab === 'feedback'" id="snap-details-modal-feedback-tab-content" class="overflow-y-auto" style="max-height: 320px;">
-            <div v-if="!feedback.loading && feedback.data.length === 0" class="placeholder m-4">
+          <div v-else-if="activeTab === 'feedback'" id="snap-details-modal-feedback-tab-content" class="h-full p-4 overflow-y-auto" style="max-height: 320px;">
+            <div v-if="!feedback.loading && feedback.data.length === 0" class="placeholder h-full">
               <p>No feedback for this snap yet...</p>
             </div>
             <div v-else>
