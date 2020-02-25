@@ -24,8 +24,10 @@ class FeedbackMessageController {
       'origin_url.max': Antl.formatMessage('validations.generic.maxChar', { field: 'origin_url', max: 2083 })
     }
 
+    const { type, details, origin_url } = request.only([ 'type', 'details', 'origin_url' ])
+
     // Validate the fields in the request
-    const validation = await validateAll([ request.type, request.details, request.origin_url ], validationRules, validationMessages)
+    const validation = await validateAll({ type, details, origin_url }, validationRules, validationMessages)
 
     if (!validation.fails()) {
       try {
