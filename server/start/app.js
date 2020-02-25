@@ -25,7 +25,8 @@ const providers = [
   'adonis-cast-attributes/providers/CastAttributesProvider',
   'adonis-acl/providers/AclProvider',
   'adonis-throttle/providers/ThrottleProvider',
-  'adonis-scheduler/providers/SchedulerProvider'
+  'adonis-scheduler/providers/SchedulerProvider',
+  '@radmen/adonis-lucid-soft-deletes/providers/SoftDeletesProvider'
 ]
 
 /*

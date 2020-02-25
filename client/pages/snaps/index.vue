@@ -17,10 +17,22 @@
             <avatar :user="snap.user" size="12"/>
           </div>
           <div class="flex-grow px-1 py-2 truncate">
-            <div class="font-bold text-sm truncate">{{ snap.user.username }}</div>
+            <div class="flex flex-row text-sm truncate">
+              <span class="flex-initial font-bold truncate" :title="snap.user.username">
+                {{ snap.user.username }}
+              </span>
+              <follow-button
+                v-if="!isAuthenticated || loggedInUser.id !== snap.user.id"
+                :username="snap.user.username"
+                :logged-in-user-is-follower.sync="snap.user.logged_in_user_is_follower"
+                class="flex-none ml-1"
+                @followed="onUserFollowed"
+                @unfollowed="onUserUnfollowed"
+              />
+            </div>
             <div class="text-sm truncate">{{ snap.userChallengePivot.challenge.title }}</div>
           </div>
-          <div class="flex-none pl-1 pr-2 py-2">
+          <div class="flex-none w-10 text-right pr-2 py-2">
             {{ snap.userChallengePivot.created_at | moment('from', 'now', true) }}
           </div>
         </div>
@@ -46,7 +58,19 @@
                   <avatar :user="selectedSnap.user" size="10"/>
                 </div>
                 <div class="flex-grow px-1 py-2 truncate">
-                  <div class="font-bold text-sm truncate">{{ selectedSnap.user.username }}</div>
+                  <div class="flex flex-row text-sm truncate">
+                    <span class="flex-initial font-bold truncate" :title="selectedSnap.user.username">
+                      {{ selectedSnap.user.username }}
+                    </span>
+                    <follow-button
+                      v-if="!isAuthenticated || loggedInUser.id !== selectedSnap.user.id"
+                      :username="selectedSnap.user.username"
+                      :logged-in-user-is-follower.sync="selectedSnap.user.logged_in_user_is_follower"
+                      class="flex-none ml-1"
+                      @followed="onUserFollowed"
+                      @unfollowed="onUserUnfollowed"
+                    />
+                  </div>
                   <div class="text-sm truncate">{{ selectedSnap.userChallengePivot.challenge.title }}</div>
                 </div>
                 <div class="flex-none px-2 py-2">
@@ -77,7 +101,7 @@
         </template>
         <template v-else-if="!loading">
           <div class="text-center z-10">
-            <p class="mb-3">There are no active snaps :(</p>
+            <p class="mb-3">There are no snaps to show :(</p>
             <router-link :to="{ name: 'dashboard.index' }" class="button button-danger button-default-size">
               Exit
             </router-link>
@@ -94,6 +118,7 @@
 import { mapGetters } from 'vuex'
 import AppNavbar from '@/components/AppNavbar.vue'
 import Avatar from '@/components/Avatar.vue'
+import FollowButton from '@/components/FollowButton.vue'
 import SnapDetailsModal from '@/components/modals/SnapDetailsModal.vue'
 import SnapFeedbackModal from '@/components/modals/SnapFeedbackModal.vue'
 import { ArrowLeftIcon, ArrowRightIcon, InfoIcon, XIcon, HeartIcon } from 'vue-feather-icons'
@@ -104,6 +129,7 @@ export default {
   components: {
     AppNavbar,
     Avatar,
+    FollowButton,
     SnapDetailsModal,
     SnapFeedbackModal,
     ArrowLeftIcon,
@@ -159,7 +185,7 @@ export default {
 
       this.loading = true
 
-      const response = await this.$axios.get(`/snaps?page=${this.page}`)
+      const response = await this.$axios.get(`${this.$route.meta.snapsEndpoint}?page=${this.page}`)
 
       this.snaps = this.snaps.concat(response.data.data)
       this.lastPage = response.data.lastPage
@@ -188,6 +214,26 @@ export default {
     nextSnap () {
       if(this.selectedSnapIndex < (this.snaps.length - 1)) {
         this.selectedSnapIndex++
+      }
+    },
+
+    onUserFollowed (event) {
+      const username = event.username
+
+      for(const i in this.snaps) {
+        if(this.snaps[i].user.username === username) {
+          this.snaps[i].user.logged_in_user_is_follower = true
+        }
+      }
+    },
+
+    onUserUnfollowed (event) {
+      const username = event.username
+
+      for(const i in this.snaps) {
+        if(this.snaps[i].user.username === username) {
+          this.snaps[i].user.logged_in_user_is_follower = false
+        }
       }
     },
 

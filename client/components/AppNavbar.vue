@@ -11,11 +11,19 @@
       </div>
       <div class="flex-grow hidden md:flex justify-start">
         <router-link
-          :to="{ name: 'snaps.index' }"
+          :to="{ name: 'walls.global' }"
           :class="{ [textColorClass]: true }"
           class="inline-block p-4"
         >
           <compass-icon size="1.5x" class="inline"/><span class="align-middle ml-1">Explore</span>
+        </router-link>
+        <router-link
+          v-if="isAuthenticated"
+          :to="{ name: 'walls.friends' }"
+          :class="{ [textColorClass]: true }"
+          class="inline-block p-4"
+        >
+          <heart-icon size="1.5x" class="inline"/><span class="align-middle ml-1">Friends</span>
         </router-link>
         <router-link
           :to="{ name: 'challenges.index' }"
@@ -96,13 +104,14 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { LogInIcon, UserPlusIcon, CompassIcon, PenToolIcon, ClockIcon, BarChart2Icon, UserIcon } from 'vue-feather-icons'
+import { LogInIcon, UserPlusIcon, CompassIcon, HeartIcon, PenToolIcon, ClockIcon, BarChart2Icon, UserIcon } from 'vue-feather-icons'
 
 export default {
   components: {
     LogInIcon,
     UserPlusIcon,
     CompassIcon,
+    HeartIcon,
     PenToolIcon,
     ClockIcon,
     BarChart2Icon,

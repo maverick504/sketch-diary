@@ -220,7 +220,7 @@ export default {
         })
 
         // Redirect to the created snap.
-        this.$router.push({ name: 'snaps.index' })
+        this.$router.push({ name: 'walls.global' })
       } catch (e) {
         this.form.handleErrorResponse(e.response)
       }

@@ -10,34 +10,6 @@ const UserChallenge = use('App/Models/UserChallenge')
 
 class SnapController {
 
-  async index ({ request, auth }) {
-    var query = Snap.query()
-
-    if(auth.user) {
-      query.select([
-        'snaps.*',
-        Database.raw("IF((snap_feedback_messages.id IS NOT NULL), 1, 0) AS logged_in_user_gived_feedback")
-      ])
-      .leftJoin('snap_feedback_messages', function () {
-        this
-        .on('snap_feedback_messages.snap_id', 'snaps.id')
-        .on('snap_feedback_messages.user_id', auth.user.id)
-      })
-    } else {
-      query.select([
-        'snaps.*'
-      ])
-    }
-
-    query
-    .with('user')
-    .with('userChallengePivot.challenge')
-    .with('media')
-    .orderBy('snaps.id', 'DESC')
-
-    return query.paginate(request.get().page, 8)
-  }
-
   async userIndex ({ request, auth }) {
     return Snap.query()
     .select('snaps.*')

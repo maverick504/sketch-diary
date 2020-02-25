@@ -60,6 +60,12 @@ Route.group(() => {
   Route.get('user/stats', 'Api/StatsController.index').middleware(['auth:jwt'])
   Route.get('user/snaps', 'Api/SnapController.userIndex').middleware(['auth:jwt'])
 
+  Route.get('users/:username', 'Api/UserController.show')
+  Route.get('users/:username/followers', 'Api/UserController.followers')
+  Route.get('users/:username/followings', 'Api/UserController.followings')
+  Route.post('users/:username/follow', 'Api/UserController.follow').middleware(['auth:jwt'])
+  Route.post('users/:username/unfollow', 'Api/UserController.unfollow').middleware(['auth:jwt'])
+
   Route.get('skills', 'Api/SkillController.index')
   Route.get('main-skills', 'Api/SkillController.main')
 
@@ -71,7 +77,9 @@ Route.group(() => {
   Route.get('user-challenges/:id', 'Api/UserChallengeController.show').middleware(['auth:jwt'])
   Route.delete('user-challenges/:id', 'Api/UserChallengeController.destroy').middleware(['auth:jwt'])
 
-  Route.get('snaps', 'Api/SnapController.index')
+  Route.get('walls/global', 'Api/WallController.global')
+  Route.get('walls/friends', 'Api/WallController.friends')
+
   Route.get('snaps/:id', 'Api/SnapController.show')
   Route.post('snaps', 'Api/SnapController.store').middleware(['auth:jwt'])
   Route.delete('snaps/:id', 'Api/SnapController.destroy')

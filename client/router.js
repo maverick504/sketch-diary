@@ -21,7 +21,8 @@ const routes = [
 
   { path: '/dashboard', name: 'dashboard.index', component: page('dashboard/index.vue'), alias: '/' },
 
-  { path: '/snaps', name: 'snaps.index', component: page('snaps/index.vue') },
+  { path: '/walls/global', name: 'walls.global', component: page('snaps/index.vue'), meta: { snapsEndpoint: '/walls/global' } },
+  { path: '/walls/friends', name: 'walls.friends', component: page('snaps/index.vue'), meta: { snapsEndpoint: '/walls/friends' } },
 
   { path: '/challenges', name: 'challenges.index', component: page('challenges/index.vue') },
   { path: '/challenges/:id', name: 'challenges.show', component: page('challenges/show/index.vue') },

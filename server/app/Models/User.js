@@ -69,6 +69,30 @@ class User extends Model {
     return [ 'password' ]
   }
 
+  async countFollowings () {
+    const query = await this.followings().count()
+    this.total_followings = query[0]['count(*)'] || 0
+
+    await this.save()
+  }
+
+  async countFollowers () {
+    const query = await this.followers().count()
+    this.total_followers = query[0]['count(*)'] || 0
+
+    await this.save()
+  }
+
+  followers () {
+    return this.belongsToMany('App/Models/User', 'followed_id', 'follower_id', 'id', 'id')
+    .pivotModel('App/Models/UserFollow')
+  }
+
+  followings () {
+    return this.belongsToMany('App/Models/User', 'follower_id', 'followed_id', 'id', 'id')
+    .pivotModel('App/Models/UserFollow')
+  }
+
   challenges () {
     return this.belongsToMany('App/Models/Challenge')
     .pivotModel('App/Models/UserChallenge')

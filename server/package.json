@@ -29,6 +29,7 @@
     "@adonisjs/mail": "^3.0.10",
     "@adonisjs/session": "^1.0.29",
     "@adonisjs/validator": "^5.0.6",
+    "@radmen/adonis-lucid-soft-deletes": "^0.2.0",
     "adonis-acl": "^1.1.1",
     "adonis-cast-attributes": "^1.0.0",
     "adonis-scheduler": "^3.0.2",
