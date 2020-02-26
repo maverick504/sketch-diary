@@ -30,7 +30,7 @@ const TModal = {
   baseClass: 'z-40 overflow-auto left-0 top-0 bottom-0 right-0 w-full h-full fixed overflow-x-hidden',
   overlayClass: 'z-40 overflow-auto left-0 top-0 bottom-0 right-0 w-full h-full fixed bg-black opacity-75',
   containerClass: 'z-50 relative p-3 md:py-8 mx-auto max-w-full',
-  closeIconClass: 'fill-current h-6 w-6 text-gray-900 absolute right-0 top-0 m-6',
+  closeIconClass: 'fill-current h-6 w-6 text-gray-900 absolute right-0 mt-4 mx-6',
   wrapperClass: 'bg-white shadow-lg flex flex-col overflow-hidden',
   headerClass: 'bg-gray-100 p-4 text-gray-900 text-xl',
   bodyClass: 'flex-grow bg-white p-4 text-gray-900',

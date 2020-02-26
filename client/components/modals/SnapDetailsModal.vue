@@ -57,7 +57,7 @@
             <div v-if="!feedback.loading && feedback.data.length === 0" class="placeholder h-full">
               <p>No feedback for this snap yet...</p>
             </div>
-            <div v-else>
+            <div v-else class="-m-4">
               <div v-for="message in feedback.data" class="bg-white p-4 border-b">
                 <div class="text-gray-600 mb-2">
                   <span class="text-gray-900 mr-2">{{ message.user.username }}</span>{{ message.created_at | moment('DD/MM/YY') }}

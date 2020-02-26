@@ -1,7 +1,9 @@
 <template>
   <t-modal
     v-model="show"
-    :hideCloseButton="true"
+    :clickToClose="!form.busy"
+    :escToClose="!form.busy"
+    :hideCloseButton="form.busy"
     header="Log in"
     width="340"
     ref="modal"

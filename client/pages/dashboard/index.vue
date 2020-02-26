@@ -30,10 +30,12 @@
           <div class="text-primary text-center text-xl mb-4">My Snaps</div>
           <template v-if="!loadingSnaps && snaps.length === 0">
             <div class="placeholder">
-              <p>You don't have any active snaps...</p>
-              <router-link :to="{ name: 'challenges.index' }" class="button button-primary button-default-size mt-4">
-                Try completing a challenge
-              </router-link>
+              <div class="text-center">
+                <p>You don't have any active snaps...</p>
+                <router-link :to="{ name: 'challenges.index' }" class="button button-primary button-default-size mt-4">
+                  Try completing a challenge
+                </router-link>
+              </div>
             </div>
           </template>
           <template v-else>

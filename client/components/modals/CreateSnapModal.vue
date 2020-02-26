@@ -3,7 +3,7 @@
     v-model="show"
     :clickToClose="!form.busy"
     :escToClose="!form.busy"
-    :hideCloseButton="true"
+    :hideCloseButton="form.busy"
     header="Create snap"
     width="480"
     ref="modal"
@@ -62,8 +62,10 @@
     <template v-else>
 
       <label class="placeholder py-16 cursor-pointer" @click="$refs.file.click()">
-        <upload-cloud-icon size="3x" class="inline-block mx-auto mb-4"/>
-        <p>Click here to select an image...</p>
+        <div class="text-center">
+          <upload-cloud-icon size="3x" class="inline-block mx-auto mb-4"/>
+          <p>Click here to select an image...</p>
+        </div>
       </label>
       <input ref="file" class="hidden" type="file" accept="image/*" @change="fileChanged">
 

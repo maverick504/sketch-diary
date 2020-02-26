@@ -3,7 +3,7 @@
     v-model="show"
     :clickToClose="!form.busy"
     :escToClose="!form.busy"
-    :hideCloseButton="!form.busy"
+    :hideCloseButton="form.busy"
     header="Help us with your feedback!"
     width="400"
     height="0"
