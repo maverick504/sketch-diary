@@ -77,7 +77,7 @@
       </div>
       <template slot="footer">
         <p v-if="!challengeStarted" class="text-center mb-3">
-          Prepare your pencil/pen, sheets of paper or your drawing tablet...
+          Prepare your pencil, sheets of paper or your drawing tablet...
         </p>
         <t-button
           v-if="challengeStarted"
